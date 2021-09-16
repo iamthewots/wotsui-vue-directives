@@ -10,13 +10,13 @@
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
-    "build-lib": "vue-cli-service build --target lib --name wotsui-vue-directives src/index.ts && tsc emitDeclarationOnly -p tsconfig.json",
+    "build-lib": "vue-cli-service build --target lib --name wotsui-vue-directives src/directives/index.ts",
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
     "core-js": "^3.6.5",
     "vue": "^3.0.0",
-    "wotsui-api": "^0.0.6"
+    "wotsui-api": "^0.0.7"
   },
   "devDependencies": {
     "@typescript-eslint/eslint-plugin": "^4.18.0",

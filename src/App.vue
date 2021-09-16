@@ -1,14 +1,7 @@
 <template>
   <div>Directive playground</div>
   <div class="spacer">We need some space to test here :)</div>
-  <div
-    id="animate-on-scroll"
-    v-animate-on-scroll.children.queue="{
-      className: 'cm',
-      interval: 250,
-      target: 'children',
-    }"
-  >
+  <div id="animate-on-scroll" v-animate-on-scroll.children.queue="aosBinding">
     <div class="test-cm">Ciao</div>
     <div class="test-cm">mamma</div>
     <div class="test-cm">guarda</div>
@@ -18,16 +11,17 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from "vue";
+import { defineComponent, reactive } from "vue";
 import { AnimateOnScrollDirective } from "./directives/animate/animate-on-scroll";
 
 export default defineComponent({
   setup() {
-    const aosBinding: AnimateOnScrollDirective = {
+    const aosBinding = reactive<AnimateOnScrollDirective>({
       className: "cm",
       interval: 250,
       target: "children",
-    };
+      invertRemove: true,
+    });
 
     return aosBinding;
   },
@@ -49,10 +43,10 @@ body {
 }
 
 .test-cm {
-  transition: transform 0.5s ease-out;
+  transition: background-color 0.5s ease-out;
 }
 
 .cm {
-  transform: translateX(10px);
+  background-color: orange;
 }
 </style>
