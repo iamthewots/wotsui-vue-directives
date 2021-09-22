@@ -8,7 +8,17 @@ export default function parseClassManagerOptions(
   const opt = ClassManager.parseOptions(binding.value);
   opt.queue = !!binding.modifiers.queue;
   if (binding.modifiers.children) {
-    opt.target = "children";
+    opt.target = 1;
   }
   return opt;
+}
+
+export function getClassName(binding: DirectiveBinding): string {
+  if (typeof binding.value === "string") {
+    return binding.value;
+  }
+  if (typeof binding.value === "object" && typeof binding.value.className === "string") {
+    return binding.value.className;
+  }
+  return "";
 }

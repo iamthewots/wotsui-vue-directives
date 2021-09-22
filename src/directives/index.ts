@@ -1,8 +1,10 @@
 import { App } from "vue";
-import animateOnScrollDirective from "./animate/animate-on-scroll";
-import intersectionDirective from "./intersection/intersection";
+import animateOnIntersectionDirective from "./src/animate-on-intersection";
+import intersectionDirective from "./src/intersection";
+import writeOnIntersectionDirective from "./src/write-on-intersection";
 
 export default function install(Vue: App): void {
-  Vue.directive("animate-on-scroll", animateOnScrollDirective);
+  Vue.directive("animate-on-intersection", animateOnIntersectionDirective);
   Vue.directive("intersection", intersectionDirective);
+  Vue.directive("write-on-intersection", writeOnIntersectionDirective);
 }
