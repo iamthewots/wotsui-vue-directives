@@ -2,7 +2,7 @@ import { DirectiveBinding } from "vue";
 import { IntersectionManager } from "wui-api";
 import { parseIntersectionManagerSettings } from "./composables/use-intersection-manager";
 
-export default function intersectionManagerDirective(
+export default function manageIntersection(
     el: Element,
     binding: DirectiveBinding
 ) {

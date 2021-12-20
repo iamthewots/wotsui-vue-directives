@@ -1,5 +1,8 @@
 import { DirectiveBinding } from "vue";
-import { ClassManager, IntersectionManager } from "wui-api";
+import {
+    ClassManager,
+    IntersectionManager,
+} from "wui-api";
 import {
     getClassName,
     parseClassManagerSettings,
@@ -9,10 +12,7 @@ import {
     parseIntersectionManagerSettings,
 } from "./composables/use-intersection-manager";
 
-export default function classManagerDirective(
-    el: Element,
-    binding: DirectiveBinding
-) {
+export default function manageClass(el: Element, binding: DirectiveBinding) {
     const className = getClassName(binding);
     if (!className) return;
 

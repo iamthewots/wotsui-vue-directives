@@ -15,18 +15,18 @@ export function expandIntersectionCallbacks(
     intersectionHandler: (entry: IntersectionObserverEntry) => void,
     noIntersectionHandler: (entry: IntersectionObserverEntry) => void
 ) {
+    const actualIntersectionHandler = settings.intersectionHandler;
+    const actualNoIntersectionHandler = settings.noIntersectionHandler;
     settings.intersectionHandler = function (entry: IntersectionObserverEntry) {
         intersectionHandler(entry);
-        if (typeof settings.intersectionHandler === "function") {
-            settings.intersectionHandler(entry);
-        }
+        if (typeof actualIntersectionHandler === "function")
+            actualIntersectionHandler(entry);
     };
     settings.noIntersectionHandler = function (
         entry: IntersectionObserverEntry
     ) {
         noIntersectionHandler(entry);
-        if (typeof settings.noIntersectionHandler === "function") {
-            settings.noIntersectionHandler(entry);
-        }
+        if (typeof actualNoIntersectionHandler === "function")
+            actualNoIntersectionHandler(entry);
     };
 }

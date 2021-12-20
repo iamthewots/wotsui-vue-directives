@@ -1,24 +1,25 @@
 import { DirectiveBinding } from "vue";
-import { IntersectionManager, Typewriter } from "wui-api";
+import {
+    IntersectionManager,
+    Typewriter,
+} from "wui-api";
 import {
     expandIntersectionCallbacks,
     parseIntersectionManagerSettings,
 } from "./composables/use-intersection-manager";
 import { parseTypewriterSettings } from "./composables/use-typewriter";
 
-export default function typewriterDirective(
-    el: Element,
-    binding: DirectiveBinding
-) {
+export default function typewrite(el: Element, binding: DirectiveBinding) {
     const typewriterSettings = parseTypewriterSettings(binding);
     const typewriter = new Typewriter(typewriterSettings);
     typewriter.initElement(el);
+    typewriter.clearText(el);
     const intersectionManagerSettings =
         parseIntersectionManagerSettings(binding);
     expandIntersectionCallbacks(
         intersectionManagerSettings,
-        (entry: IntersectionObserverEntry) => typewriter.writeText(el),
-        (entry: IntersectionObserverEntry) => typewriter.clearText(el)
+        () => typewriter.writeText(el),
+        () => typewriter.stopText(el)
     );
     const intersectionManager = new IntersectionManager(
         intersectionManagerSettings
